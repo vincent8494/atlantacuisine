@@ -4,6 +4,16 @@
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const sectionPhotos = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const image = entry.target;
+      if (image.dataset.srcset) image.srcset = image.dataset.srcset;
+      image.src = image.dataset.sectionSrc;
+      sectionPhotos.unobserve(image);
+    }
+  }, {rootMargin: '360px 0px'});
+  $$('img[data-section-src]').forEach(image => sectionPhotos.observe(image));
   const dishes = [
   {
     "name": "Beef biryani",
