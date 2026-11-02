@@ -1,5 +1,6 @@
 [build]
-  publish = "dist"
+  command = "node build.mjs"
+  publish = "public-build"
 
 [[headers]]
   for = "/*"
@@ -30,6 +31,6 @@
     aggregate_by = ["ip", "domain"]
 
 [[headers]]
-  for = "/assets/*"
+  for = "/assets/v/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=31536000, immutable"

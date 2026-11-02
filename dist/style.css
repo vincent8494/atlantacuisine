@@ -74,10 +74,10 @@ footer{background:#0d100d}.foot-inner{padding-top:36px;padding-bottom:24px}.foot
    Screen blending removes the white paper on dark surfaces; multiply on cream. */
 .statement,.gallery-section,.visit-section,body>footer,.picture-menu,.nav-drawer{position:relative;isolation:isolate}
 .menu-illustrations{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;user-select:none}
-.menu-doodle{position:absolute;display:block;background-image:url('assets/photo-8.webp');background-size:1080px 1080px;background-repeat:no-repeat;filter:invert(1) sepia(1) saturate(.65);mix-blend-mode:screen;opacity:.32;transform-origin:center;mask-image:linear-gradient(180deg,#000 80%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent)}
-.doodle-cheese{width:115px;height:105px;background-position:-300px -50px}
-.doodle-sandwich{width:185px;height:130px;background-position:-715px -18px}
-.doodle-carrot{width:115px;height:100px;background-position:-865px -72px}
+.menu-doodle{position:absolute;display:block;background-image:url('assets/doodles-gold.webp');background-size:680px 154px;background-repeat:no-repeat;mix-blend-mode:screen;opacity:.32;transform-origin:center;mask-image:linear-gradient(180deg,#000 80%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent)}
+.doodle-cheese{width:115px;height:105px;background-position:0 -32px}
+.doodle-sandwich{width:185px;height:130px;background-position:-415px 0}
+.doodle-carrot{width:115px;height:100px;background-position:-565px -54px}
 .art-one{left:1.5%;top:28px;transform:rotate(-18deg)}
 .art-two{right:1%;top:40px;transform:rotate(12deg)}
 .art-three{right:4%;bottom:20px;transform:rotate(-14deg)}
@@ -87,7 +87,7 @@ footer{background:#0d100d}.foot-inner{padding-top:36px;padding-bottom:24px}.foot
 .gallery-section .art-one{top:35px;left:auto;right:30%;opacity:.23}.gallery-section .art-two{top:auto;bottom:0;right:1%}.gallery-section .art-three{left:0;right:auto;bottom:26%;opacity:.25}
 .visit-section .art-one{top:auto;bottom:20px;left:2%;transform:rotate(12deg) scale(1.15)}.visit-section .art-two{top:5px;right:0;opacity:.23}.visit-section .art-three{right:46%;bottom:15px;opacity:.2}
 body>footer .art-one{left:2%;top:80px;opacity:.2}body>footer .art-two{top:auto;bottom:5px;right:2%;opacity:.2}body>footer .art-three{display:none}
-.picture-menu .menu-doodle{filter:sepia(.4);mix-blend-mode:multiply;opacity:.33}.picture-menu .art-one{top:650px;left:-20px}.picture-menu .art-two{top:1250px;right:-65px}.picture-menu .art-three{top:1950px;left:-45px;bottom:auto}.picture-menu .art-four{top:2500px;right:-35px;transform:rotate(18deg)}.picture-menu .art-five{left:-80px;bottom:450px;transform:rotate(-12deg)}.picture-menu .art-six{right:-35px;bottom:70px;transform:rotate(18deg)}
+.picture-menu .menu-doodle{mix-blend-mode:multiply;opacity:.33}.picture-menu .art-one{top:650px;left:-20px}.picture-menu .art-two{top:1250px;right:-65px}.picture-menu .art-three{top:1950px;left:-45px;bottom:auto}.picture-menu .art-four{top:2500px;right:-35px;transform:rotate(18deg)}.picture-menu .art-five{left:-80px;bottom:450px;transform:rotate(-12deg)}.picture-menu .art-six{right:-35px;bottom:70px;transform:rotate(18deg)}
 .nav-drawer .menu-doodle{opacity:.2}.nav-drawer .art-one{left:auto;right:8%;top:10px}.nav-drawer .art-two{top:auto;bottom:15px;right:1%}.nav-drawer .art-three{display:none}.nav-drawer>a,.nav-drawer>p{position:relative;z-index:1}
 @media(max-width:640px){.menu-doodle{opacity:.24;scale:.7}.hero .art-one{left:auto;right:-20px;top:85px;opacity:.23}.hero .art-two{left:-45px;bottom:65px;opacity:.3}.hero .art-three{display:none}.statement .art-one{left:-40px;bottom:-20px}.statement .art-two{right:-60px;top:-20px}.gallery-section .art-one{right:-35px;top:0}.gallery-section .art-three{display:none}.visit-section .art-one{left:auto;right:-30px;bottom:0}.visit-section .art-two{top:-20px;right:-60px}.visit-section .art-three{left:-45px;right:auto;bottom:40%;opacity:.18}.picture-menu .menu-doodle{opacity:.16}.picture-menu .art-one{left:-65px;top:600px}.picture-menu .art-two{right:-110px}.picture-menu .art-three{left:-70px}.picture-menu .art-four{right:-65px}.picture-menu .art-five{left:-110px}.picture-menu .art-six{right:-70px}body>footer .art-one{left:-50px;top:20px}body>footer .art-two{right:-95px;bottom:0}}
 
@@ -96,8 +96,8 @@ body>footer .art-one{left:2%;top:80px;opacity:.2}body>footer .art-two{top:auto;b
 
 /* Convert the paper luminance to transparency while tinting the original ink. */
 .menu-illustrations,.picture-menu .menu-illustrations{mix-blend-mode:normal}
-.menu-doodle{filter:url('#menu-gold-ink');opacity:.65}
-.picture-menu .menu-doodle{filter:url('#menu-brown-ink');opacity:.35}
+.menu-doodle{opacity:.65}
+.picture-menu .menu-doodle{background-image:url('assets/doodles-brown.webp');opacity:.35}
 .hero .menu-doodle,.statement .menu-doodle,.gallery-section .menu-doodle,.visit-section .menu-doodle,body>footer .menu-doodle{opacity:.65}
 @media(max-width:640px){.hero .menu-doodle,.statement .menu-doodle,.gallery-section .menu-doodle,.visit-section .menu-doodle,body>footer .menu-doodle{opacity:.45}.picture-menu .menu-doodle{opacity:.25}}
 
@@ -266,9 +266,9 @@ html.photo-is-open{overflow:hidden}
 @media(max-width:640px){.order-card{grid-template-columns:minmax(0,1fr);margin-top:32px;padding:30px 24px 22px;gap:24px;border-radius:14px}.order-copy h3{font-size:40px}.order-copy>p{font-size:13px;margin-top:14px}.order-action{align-items:stretch;gap:12px}.order-call{width:100%;justify-content:center}.order-number{text-align:center}.order-note{font-size:11px;padding-top:18px}}
 
 /* Replated hero asset: retain the real ceramic edge and transparent surroundings. */
-.plate-cutout .plate-inner{border:0;border-radius:0;overflow:visible;box-shadow:none;filter:drop-shadow(0 10px 9px #0008)}
+.plate-cutout .plate-inner{border:0;border-radius:0;overflow:visible;box-shadow:none;filter:none}
 .plate-cutout img{object-fit:contain}
-@media(max-width:640px){.plate-cutout .plate-inner{filter:drop-shadow(0 5px 5px #0007)}}
+@media(max-width:640px){.plate-cutout .plate-inner{filter:none}}
 
 .hero{overflow:clip}
 
@@ -293,8 +293,8 @@ html.photo-is-open{overflow:hidden}
 .table-sheen{background:radial-gradient(circle,transparent 45%,#0003 90%)}
 .table-disc{transition:transform 1.15s cubic-bezier(.22,.68,.2,1);box-shadow:-22px 22px 65px #000a}
 .plate-inner{transition:transform 1.15s cubic-bezier(.22,.68,.2,1),opacity .6s}
-.plate-cutout .plate-inner{opacity:1;filter:drop-shadow(5px 15px 8px #0009)}
-@media(max-width:640px){.table-surface{border-width:2px}.table-disc{box-shadow:-10px 12px 30px #0008}.plate-cutout .plate-inner{filter:drop-shadow(2px 6px 4px #0009)}}
+.plate-cutout .plate-inner{opacity:1;filter:none}
+@media(max-width:640px){.table-surface{border-width:2px}.table-disc{box-shadow:-10px 12px 30px #0008}.plate-cutout .plate-inner{filter:none}}
 @media(prefers-reduced-motion:reduce){.table-disc,.plate-inner{transition:none}}
 
 /* Social link beside the contact details; brand accents appear on interaction. */
@@ -339,3 +339,6 @@ footer.footer-glass .foot-inner a,footer.footer-glass .margravon{pointer-events:
 footer.footer-glass>.menu-illustrations{z-index:2}
 footer.footer-glass .glass-shade{background:linear-gradient(180deg,#08100cc9,#08100c75 48%,#08100cd9)}
 footer.footer-glass .foot-wordmark{color:var(--cream,#eee7db)}
+
+/* Deferred photos occupy their layout space without showing an empty image icon. */
+img:not([src]){visibility:hidden}

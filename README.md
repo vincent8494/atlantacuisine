@@ -21,4 +21,4 @@ Then open http://localhost:4173. The Node server serves only the public site rou
 
 Menu prices, phone numbers and hours were transcribed from the supplied menu and opening announcement. Confirm these details before making the website public. Bookings and orders use telephone links; no online reservation or payment service is connected.
 
-The hosting identity is recorded in .openai/hosting.json. The deployed site is private.
+Netlify runs `node build.mjs` and publishes `public-build/`. The build fingerprints referenced media for long-lived browser caching and excludes unused originals. Run the build in a fresh checkout to reproduce the deploy.
