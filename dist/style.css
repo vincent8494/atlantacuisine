@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('assets/cormorant-garamond-latin-wght-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('assets/cormorant-garamond-latin-wght-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('assets/geist-latin-wght-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('assets/oswald-latin-wght-normal.woff2') format('woff2');
+}
 /* Atlanta Cuisine: responsive restaurant layout. */
 :root{--bg:#111412;--panel:#1a1d19;--ivory:#eee7db;--muted:#b3b1a6;--gold:#c9ad78;--line:#eee7db26;--ease:cubic-bezier(.2,.75,.25,1)}
 *,*::before,*::after{box-sizing:border-box}*{margin:0;padding:0}

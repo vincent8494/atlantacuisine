@@ -72,9 +72,43 @@
   let pendingAngle = null;
   let autoTimer = 0;
   let tableVisible = false;
+  const visiblePlates = new Set();
+  function loadPlate(plate) {
+    const image = plate.querySelector('img[data-srcset]');
+    if (!image) return;
+    image.srcset = image.dataset.srcset;
+    image.src = image.dataset.src;
+    delete image.dataset.srcset;
+    delete image.dataset.src;
+  }
+  // Paint the main plates first when the edge of the wheel is clipped.
+  let includePartialPlates = false;
+  const plateObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        visiblePlates.add(entry.target);
+        if (includePartialPlates || entry.intersectionRatio >= 0.9) loadPlate(entry.target);
+      } else {
+        visiblePlates.delete(entry.target);
+      }
+    }
+  }, {threshold: [0, 0.9]});
+  plates.forEach(plate => plateObserver.observe(plate));
+  window.addEventListener('load', () => {
+    includePartialPlates = true;
+    visiblePlates.forEach(loadPlate);
+  }, {once: true});
+  function prepareTurn(direction) {
+    for (const plate of visiblePlates) {
+      loadPlate(plates[wrap(plates.indexOf(plate) + direction)]);
+    }
+  }
+  let prepareTimer = 0;
   function scheduleSpin() {
     clearTimeout(autoTimer);
+    clearTimeout(prepareTimer);
     if (!tableVisible || document.hidden || reduced.matches || drag) return;
+    prepareTimer = setTimeout(() => prepareTurn(1), 3000);
     autoTimer = setTimeout(() => {
       if (document.documentElement.classList.contains('nav-is-open') || document.querySelector('dialog[open]')) {
         scheduleSpin();
@@ -122,6 +156,8 @@
     return principal + 360*Math.round((angle-principal)/360);
   }
   function showDish(next, motion=true) {
+    if (next !== step) prepareTurn(next - step);
+    loadPlate(plates[wrap(next)]);
     step=next;
     const index=wrap(step),dish=dishes[index];
     rotation(-step*spacing);
