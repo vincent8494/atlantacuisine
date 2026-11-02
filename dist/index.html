@@ -9,48 +9,178 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Atlanta Cuisine",
-  "image": "assets/photo-3.webp",
-  "telephone": "+254722283154",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "T-Place Mall, 2nd floor, above CleanShelf Supermarket",
-    "addressLocality": "Ongata Rongai",
-    "addressCountry": "KE"
-  },
-  "hasMenu": "#menu",
-  "currenciesAccepted": "KES",
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
+      "@type": "Restaurant",
+      "name": "Atlanta Cuisine",
+      "image": "https://atlantacuisine.netlify.app/assets/photo-3.webp",
+      "telephone": "+254722283154",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "T-Place Mall, 2nd floor, above CleanShelf Supermarket",
+        "addressLocality": "Ongata Rongai",
+        "addressCountry": "KE"
+      },
+      "hasMenu": {
+        "@id": "https://atlantacuisine.netlify.app/#menu"
+      },
+      "currenciesAccepted": "KES",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "08:30",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "11:00",
+          "closes": "19:30"
+        }
       ],
-      "opens": "08:30",
-      "closes": "20:00"
+      "sameAs": [
+        "https://www.tiktok.com/@atlanta.cuisine"
+      ],
+      "@id": "https://atlantacuisine.netlify.app/#restaurant",
+      "url": "https://atlantacuisine.netlify.app/",
+      "description": "Atlanta Cuisine is a restaurant at T-Place Mall in Ongata Rongai, Kenya, on the 2nd floor above CleanShelf Supermarket.",
+      "logo": "https://atlantacuisine.netlify.app/assets/brand-240.webp"
     },
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "11:00",
-      "closes": "19:30"
+      "@type": "WebSite",
+      "@id": "https://atlantacuisine.netlify.app/#website",
+      "url": "https://atlantacuisine.netlify.app/",
+      "name": "Atlanta Cuisine",
+      "inLanguage": "en-KE",
+      "publisher": {
+        "@id": "https://atlantacuisine.netlify.app/#restaurant"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://atlantacuisine.netlify.app/#webpage",
+      "url": "https://atlantacuisine.netlify.app/",
+      "name": "Atlanta Cuisine | Restaurant & Menu in Ongata Rongai",
+      "about": {
+        "@id": "https://atlantacuisine.netlify.app/#restaurant"
+      },
+      "isPartOf": {
+        "@id": "https://atlantacuisine.netlify.app/#website"
+      },
+      "inLanguage": "en-KE"
+    },
+    {
+      "@type": "Menu",
+      "@id": "https://atlantacuisine.netlify.app/#menu",
+      "url": "https://atlantacuisine.netlify.app/#menu",
+      "name": "Atlanta Cuisine food and drinks menu",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Beef curry",
+          "offers": {
+            "@type": "Offer",
+            "price": "400",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Beef biryani",
+          "offers": {
+            "@type": "Offer",
+            "price": "500",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Stir-fried beef",
+          "offers": {
+            "@type": "Offer",
+            "price": "450",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "¼ fried chicken & chips",
+          "offers": {
+            "@type": "Offer",
+            "price": "450",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "5 chicken wings & fries",
+          "offers": {
+            "@type": "Offer",
+            "price": "450",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Whole tilapia wet fry",
+          "offers": {
+            "@type": "Offer",
+            "price": "500",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Chips masala",
+          "offers": {
+            "@type": "Offer",
+            "price": "250",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Milkshake",
+          "offers": {
+            "@type": "Offer",
+            "price": "350",
+            "priceCurrency": "KES"
+          }
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Sunset mocktail",
+          "offers": {
+            "@type": "Offer",
+            "price": "250",
+            "priceCurrency": "KES"
+          }
+        }
+      ]
     }
-  ],
-  "sameAs": [
-    "https://www.tiktok.com/@atlanta.cuisine"
   ]
 }
   </script>
+  <link rel="canonical" href="https://atlantacuisine.netlify.app/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Atlanta Cuisine | Restaurant &amp; Menu in Ongata Rongai">
+  <meta property="og:description" content="Explore our food and drinks menu, prices, opening hours and location at T-Place Mall, Ongata Rongai. Call 0722 283 154 to order.">
+  <meta property="og:url" content="https://atlantacuisine.netlify.app/">
+  <meta property="og:image" content="https://atlantacuisine.netlify.app/assets/photo-3.webp">
+  <meta property="og:locale" content="en_KE">
   <link rel="icon" href="assets/brand-240.webp">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/cormorant-garamond-latin-wght-italic.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/geist-latin-wght-normal.woff2">
-  <link rel="stylesheet" href="style.css?v=20261102-22">
+  <link rel="stylesheet" href="style.css?v=20261102-23">
   <noscript><style>img[data-section-src]{display:none}</style></noscript>
 </head>
 <body>
@@ -246,6 +376,15 @@
     </div>
   </div>
 </section>
+
+<section class="visit-questions" id="questions" aria-labelledby="questions-title">
+<div class="questions-inner"><span class="eyebrow">Plan your visit</span><h2 id="questions-title">Good to know</h2>
+<details><summary>Where is Atlanta Cuisine located?</summary><p>Atlanta Cuisine is on the 2nd floor of T-Place Mall, above CleanShelf Supermarket, in Ongata Rongai, Kenya.</p></details>
+<details><summary>What time does Atlanta Cuisine open?</summary><p>Atlanta Cuisine opens from 8:30 am to 8 pm Monday to Saturday and on holidays. Sunday hours are 11 am to 7:30 pm.</p></details>
+<details><summary>How can I order from Atlanta Cuisine?</summary><p>Call 0722 283 154 or 0180 004 409 to place an order or ask about a dish.</p></details>
+<details><summary>What food is on the menu?</summary><p>The menu includes beef biryani, beef curry, stir-fried beef, chicken and chips, whole tilapia wet fry, chips masala, milkshakes and mocktails. Prices are listed in Kenyan shillings (KSh).</p></details>
+<details><summary>How do I ask about allergies or dietary needs?</summary><p>Tell the team about any allergies or dietary needs before ordering. Call 0722 283 154 to ask about ingredients in a dish.</p></details>
+</div></section>
 
 </main>
 

@@ -8,6 +8,9 @@ const source = fileURLToPath(new URL('./dist/', import.meta.url));
 const output = fileURLToPath(new URL('./public-build/', import.meta.url));
 const versioned = new Map();
 await mkdir(join(output, 'assets/v'), { recursive: true });
+for (const file of ['robots.txt', 'sitemap.xml']) {
+  await writeFile(join(output, file), await readFile(join(source, file)));
+}
 
 for (const file of ['index.html', 'style.css', 'app.js']) {
   const original = await readFile(join(source, file), 'utf8');

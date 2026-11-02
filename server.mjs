@@ -7,10 +7,10 @@ import { performance } from 'node:perf_hooks';
 import { pipeline } from 'node:stream';
 
 const root = fileURLToPath(new URL('./dist/', import.meta.url));
-const mime = { html: 'text/html; charset=utf-8', css: 'text/css', js: 'text/javascript',
+const mime = { txt: 'text/plain; charset=utf-8', xml: 'application/xml', html: 'text/html; charset=utf-8', css: 'text/css', js: 'text/javascript',
   jpeg: 'image/jpeg', jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp', mp4: 'video/mp4', webm: 'video/webm', woff2: 'font/woff2' };
 const routes = new Map([['/', 'index.html'], ['/index.html', 'index.html'],
-  ['/style.css', 'style.css'], ['/app.js', 'app.js']]);
+  ['/robots.txt', 'robots.txt'], ['/sitemap.xml', 'sitemap.xml'], ['/style.css', 'style.css'], ['/app.js', 'app.js']]);
 for (const entry of readdirSync(join(root, 'assets'), { withFileTypes: true })) {
   if (entry.isFile() && /^[\w-]+\.(webp|jpg|jpeg|png|mp4|webm|woff2)$/i.test(entry.name))
     routes.set('/assets/' + entry.name, 'assets/' + entry.name);

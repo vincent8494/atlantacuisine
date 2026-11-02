@@ -342,3 +342,10 @@ footer.footer-glass .foot-wordmark{color:var(--cream,#eee7db)}
 
 /* Deferred photos occupy their layout space without showing an empty image icon. */
 img:not([src]){visibility:hidden}
+.visit-questions{background:var(--cream,#f1ecdf);color:#263022;padding:64px 6%}
+.questions-inner{max-width:1000px;margin:auto}
+.visit-questions h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(36px,5vw,56px);font-weight:500;margin:12px 0 28px}
+.visit-questions details{border-top:1px solid #26302230;padding:18px 0}
+.visit-questions summary{cursor:pointer;font-size:17px;line-height:1.5;padding-right:12px}
+.visit-questions summary:focus-visible{outline:2px solid #826731;outline-offset:5px}
+.visit-questions p{font-size:16px;line-height:1.7;max-width:70ch;margin:14px 0 0}
