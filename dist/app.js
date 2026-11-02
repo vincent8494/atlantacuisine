@@ -264,6 +264,19 @@
   reduced.addEventListener('change',()=>{if(reduced.matches)document.getAnimations().forEach(a=>a.cancel());});
   // Supplied kitchen films: hover previews, with tap/keyboard playback too.
   const videoTiles=$$('.kitchen-video-tile');
+  const posters = $$('video[data-poster]');
+  if ('IntersectionObserver' in window) {
+    const nearGallery = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.poster = entry.target.dataset.poster;
+        nearGallery.unobserve(entry.target);
+      }
+    }, {rootMargin: '500px'});
+    posters.forEach(video => nearGallery.observe(video));
+  } else {
+    posters.forEach(video => { video.poster = video.dataset.poster; });
+  }
   const hoverDevice=matchMedia('(hover:hover) and (pointer:fine)');
   const scrollPlayback = matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
   const previewActions = new Map();

@@ -86,7 +86,7 @@ const server = http.createServer({ maxHeaderSize: 8192, headersTimeout: 10000,
       res.setHeader('Content-Range', 'bytes ' + start + '-' + end + '/' + stat.size);
     }
     res.writeHead(range ? 206 : 200, { 'Content-Type': mime[relative.split('.').pop()],
-      'Content-Length': end - start + 1, 'Accept-Ranges': 'bytes', 'Cache-Control': 'no-cache' });
+      'Content-Length': end - start + 1, 'Accept-Ranges': 'bytes', 'Cache-Control': relative.startsWith('assets/') ? 'public, max-age=86400' : 'no-cache' });
     if (req.method === 'HEAD' || !stat.size) return res.end();
     pipeline(createReadStream(path, { start, end }), res, () => {});
   } catch { if (!res.headersSent) reject(404, 'Not found'); else res.destroy(); }

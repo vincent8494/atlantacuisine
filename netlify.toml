@@ -18,3 +18,8 @@
     window_limit = 120
     window_size = 60
     aggregate_by = ["ip", "domain"]
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
