@@ -265,28 +265,55 @@
   // Supplied kitchen films: hover previews, with tap/keyboard playback too.
   const videoTiles=$$('.kitchen-video-tile');
   const hoverDevice=matchMedia('(hover:hover) and (pointer:fine)');
+  const scrollPlayback = matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
+  const previewActions = new Map();
+  const photoViewer = $('.photo-viewer');
+  let selectedPreview = null;
+  function selectVisiblePreview() {
+    let next = null;
+    let bestDistance = Infinity;
+    if (scrollPlayback.matches && !reduced.matches && !document.hidden && !photoViewer.open) {
+      for (const tile of videoTiles) {
+        const rect = tile.getBoundingClientRect();
+        const visibleHeight = Math.min(innerHeight, rect.bottom) - Math.max(0, rect.top);
+        if (!rect.height || visibleHeight < Math.min(rect.height, innerHeight) * 0.5) continue;
+        const distance = Math.abs(rect.top + rect.height / 2 - innerHeight / 2);
+        if (distance < bestDistance) {
+          next = tile;
+          bestDistance = distance;
+        }
+      }
+    }
+    if (next === selectedPreview) return;
+    if (selectedPreview) previewActions.get(selectedPreview).stop();
+    selectedPreview = next;
+    if (next) previewActions.get(next).play();
+  }
   videoTiles.forEach(tile=>{
     const video=tile.querySelector('video');
     let wantsPlayback=false;
+    let requestId=0;
     const update=()=>{
       const playing=!video.paused;
       tile.classList.toggle('is-playing',playing);
       tile.setAttribute('aria-pressed',playing);
       tile.setAttribute('aria-label',(playing?'Pause ':'Play ')+tile.dataset.title+' video');
     };
-    const stop=()=>{wantsPlayback=false;video.pause();update();};
+    const stop=()=>{requestId++;wantsPlayback=false;video.pause();update();};
     tile.addEventListener('stop-preview',stop);
     const play=async()=>{
+      const id=++requestId;
       wantsPlayback=true;
       video.muted=true;
       videoTiles.forEach(other=>{if(other!==tile)other.dispatchEvent(new Event('stop-preview'));});
-      try{await video.play();if(!wantsPlayback)video.pause();}catch{wantsPlayback=false;}
+      try{await video.play();if(!wantsPlayback)video.pause();}catch{if(id===requestId)wantsPlayback=false;}
       update();
     };
-    tile.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&hoverDevice.matches&&!reduced.matches)play();});
-    tile.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')stop();});
+    previewActions.set(tile,{play,stop});
+    tile.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&hoverDevice.matches&&!scrollPlayback.matches&&!reduced.matches)play();});
+    tile.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!scrollPlayback.matches)stop();});
     tile.addEventListener('click',()=>video.paused?play():stop());
-    tile.addEventListener('focusout',stop);
+    tile.addEventListener('focusout',()=>{if(!scrollPlayback.matches)stop();});
     video.addEventListener('play',update);
     video.addEventListener('pause',update);
     video.addEventListener('error',()=>{stop();tile.setAttribute('aria-label',tile.dataset.title+' video unavailable');});
@@ -297,7 +324,17 @@
     },{threshold:0}).observe(tile);
     update();
   });
-  const photoViewer=$('.photo-viewer');
+  if ('IntersectionObserver' in window) {
+    const visibility = new IntersectionObserver(selectVisiblePreview, {
+      threshold: Array.from({length: 21}, (_, i) => i / 20)
+    });
+    videoTiles.forEach(tile => visibility.observe(tile));
+    document.addEventListener('visibilitychange', selectVisiblePreview);
+    scrollPlayback.addEventListener('change', selectVisiblePreview);
+    reduced.addEventListener('change', selectVisiblePreview);
+    window.addEventListener('pageshow', selectVisiblePreview);
+    photoViewer.addEventListener('close', selectVisiblePreview);
+  }
   let photoOpener=null;
   $$('.moment-photo').forEach(card=>card.addEventListener('click',()=>{
     photoOpener=card;
@@ -306,6 +343,7 @@
     photoViewer.querySelector('figcaption').textContent=card.dataset.caption;
     videoTiles.forEach(tile=>tile.dispatchEvent(new Event('stop-preview')));
     photoViewer.showModal();
+    selectedPreview=null;
     document.documentElement.classList.add('photo-is-open');
   }));
   $('.photo-close').addEventListener('click',()=>photoViewer.close());
