@@ -10,6 +10,16 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'"
 
+# A single gallery visit can request dozens of photos, fonts and video ranges.
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  [redirects.rate_limit]
+    window_limit = 600
+    window_size = 60
+    aggregate_by = ["ip", "domain"]
+
 [[redirects]]
   from = "/*"
   to = "/:splat"
